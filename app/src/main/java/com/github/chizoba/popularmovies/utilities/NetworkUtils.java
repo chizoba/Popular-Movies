@@ -1,8 +1,11 @@
 package com.github.chizoba.popularmovies.utilities;
 
 import android.net.Uri;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.github.chizoba.popularmovies.Constants;
+import com.github.chizoba.popularmovies.MainActivity;
 import com.github.chizoba.popularmovies.R;
 
 import java.io.IOException;
@@ -30,16 +33,34 @@ public class NetworkUtils {
      */
     public static URL buildUrl(int id) {
         if (id == R.id.sort_by_popular) {
-            SORT_BY = "/movie/popular";
+            SORT_BY = "popular";
         } else {
-            SORT_BY = "/movie/top_rated";
+            SORT_BY = "top_rated";
         }
-        Uri builtUri = Uri.parse(MOVIE_DB_BASE_URL+SORT_BY).buildUpon()
+
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("http")
+                .authority("api.themoviedb.org")
+                .appendPath("3")
+                .appendPath("movie")
+                .appendPath(SORT_BY)
                 .appendQueryParameter(PARAM_QUERY, Constants.API_KEY)
                 .build();
+
+//        Uri builtUri = new Uri.Builder().scheme("http")
+//                .authority("api.themoviedb.org")
+//                .appendPath("3")
+//                .appendPath(SORT_BY)
+//                .appendQueryParameter(PARAM_QUERY, Constants.API_KEY)
+//                .build();
+//
+//                Uri.parse(MOVIE_DB_BASE_URL+SORT_BY).buildUpon()
+//                .appendQueryParameter(PARAM_QUERY, Constants.API_KEY)
+//                .build();
+        Log.d("BUILDURL", builder.toString());
         URL url = null;
         try {
-            url = new URL(builtUri.toString());
+            url = new URL(builder.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
