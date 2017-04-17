@@ -21,7 +21,6 @@ import java.util.List;
 
 public class MovieAdapter extends ArrayAdapter<Movie> {
 
-    Context context;
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).
      * The context is used to inflate the layout file, and the List is the data we want
@@ -36,7 +35,6 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
         super(context, 0, objects);
-        this.context = context;
     }
 
     @Override
@@ -53,10 +51,17 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
                     R.layout.movie_item, parent, false);
         }
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.movie_poster);
+        ViewHolder viewHolder = new ViewHolder();
+        viewHolder.imageView = (ImageView) convertView.findViewById(R.id.movie_poster);
+        convertView.setTag(viewHolder);
+
         String url = Constants.POSTER_BASE_URL+Constants.POSTER_SIZE+movie.moviePoster;
-        Picasso.with(getContext()).load(url).into(imageView);
+        Picasso.with(getContext()).load(url).into(viewHolder.imageView);
 
         return convertView;
+    }
+
+    private static class ViewHolder {
+        ImageView imageView;
     }
 }
