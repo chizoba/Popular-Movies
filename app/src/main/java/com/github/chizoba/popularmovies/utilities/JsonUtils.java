@@ -71,7 +71,7 @@ public final class JsonUtils {
             String poster_path = movie.getString(MOVIE_POSTER_PATH);
             String original_title = movie.getString(ORIGINAL_TITLE);
             String plot_synopsis = movie.getString(PLOT_SYNOPSIS);
-            Double user_rating = movie.getDouble(USER_RATING);
+            String user_rating = movie.getString(USER_RATING);
             String release_date = movie.getString(RELEASE_DATE);
 
             parsedUserData.add(new Movie(poster_path, original_title, plot_synopsis, user_rating, release_date));

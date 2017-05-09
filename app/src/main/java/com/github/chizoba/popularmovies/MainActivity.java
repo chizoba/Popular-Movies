@@ -72,14 +72,14 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method constructs the URL (using {@link NetworkUtils}) for the movies
      * that are on themoviesdb, and finally fires off an AsyncTask to perform the GET request using
-     * our {@link GithubQueryTask}
+     * our {@link QueryTask}
      */
     private void makeGithubSearchQuery(int id) {
         gridView.setVisibility(View.INVISIBLE);
         mErrorMessageDisplay.setVisibility(View.INVISIBLE);
         mLoadingIndicator.setVisibility(View.VISIBLE);
         URL searchUrl = NetworkUtils.buildUrl(id);
-        new GithubQueryTask().execute(searchUrl);
+        new QueryTask().execute(searchUrl);
     }
 
     /**
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
     }
 
-    private class GithubQueryTask extends AsyncTask<URL, Void, ArrayList<Movie>> {
+    private class QueryTask extends AsyncTask<URL, Void, ArrayList<Movie>> {
 
         @Override
         protected void onPreExecute() {
@@ -144,13 +144,15 @@ public class MainActivity extends AppCompatActivity {
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                        Intent i = new Intent(MainActivity.this, DetailActivity.class);
 
-                        i.putExtra(Constants.MOVIE_POSTER, searchResults.get(position).moviePoster);
-                        i.putExtra(Constants.ORIGINAL_TITLE, searchResults.get(position).originalTitle);
-                        i.putExtra(Constants.PLOT_SYNOPSIS, searchResults.get(position).plotSynopsis);
-                        i.putExtra(Constants.USER_RATING, searchResults.get(position).userRating);
-                        i.putExtra(Constants.RELEASE_DATE, searchResults.get(position).releaseDate);
+                    Movie movie = new Movie();
+                        Intent i = new Intent(MainActivity.this, DetailActivity.class);
+                        i.putExtra("MOVIE", searchResults.get(position));
+//                        i.putExtra(Constants.MOVIE_POSTER, searchResults.get(position).moviePoster);
+//                        i.putExtra(Constants.ORIGINAL_TITLE, searchResults.get(position).originalTitle);
+//                        i.putExtra(Constants.PLOT_SYNOPSIS, searchResults.get(position).plotSynopsis);
+//                        i.putExtra(Constants.USER_RATING, searchResults.get(position).userRating);
+//                        i.putExtra(Constants.RELEASE_DATE, searchResults.get(position).releaseDate);
 
                         startActivity(i);
                     }
