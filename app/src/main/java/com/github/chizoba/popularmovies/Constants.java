@@ -5,7 +5,7 @@ package com.github.chizoba.popularmovies;
  */
 
 public class Constants {
-    public final static String API_KEY = "3869fab5bf10378893e607f2f60e4844";
+    public final static String API_KEY = "";
 
     public final static String POSTER_BASE_URL = " http://image.tmdb.org/t/p/";
     public final static String POSTER_SIZE = "w185/";
