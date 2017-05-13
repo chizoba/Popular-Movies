@@ -15,10 +15,11 @@
  */
 package com.github.chizoba.popularmovies.utilities;
 
-import android.content.ContentValues;
 import android.content.Context;
 
-import com.github.chizoba.popularmovies.Movie;
+import com.github.chizoba.popularmovies.model.Movie;
+import com.github.chizoba.popularmovies.model.Review;
+import com.github.chizoba.popularmovies.model.Trailer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +53,7 @@ public final class JsonUtils {
         final String PLOT_SYNOPSIS = "overview";
         final String USER_RATING = "vote_average";
         final String RELEASE_DATE = "release_date";
+        final String ID = "id";
 
         /* String array to hold each movie's details String */
         ArrayList<Movie> parsedUserData = null;
@@ -73,12 +75,82 @@ public final class JsonUtils {
             String plot_synopsis = movie.getString(PLOT_SYNOPSIS);
             String user_rating = movie.getString(USER_RATING);
             String release_date = movie.getString(RELEASE_DATE);
+            String id = movie.getString(ID);
 
-            parsedUserData.add(new Movie(poster_path, original_title, plot_synopsis, user_rating, release_date));
+            parsedUserData.add(new Movie(poster_path, original_title, plot_synopsis, user_rating, release_date, id));
 
         }
 
         return parsedUserData;
     }
 
+    public static ArrayList<Trailer> getTrailersFromJson(Context context, String jsonString)
+            throws JSONException {
+
+        /* Movies information. Each movie's info is an element of the "results" array */
+        final String TRAILER_LIST = "results";
+
+        /* A Movie info */
+        final String ID = "id";
+        final String NAME = "name";
+        final String KEY = "key";
+
+        /* String array to hold each movie's details String */
+        ArrayList<Trailer> parsedTrailerData = null;
+
+        JSONObject trailerJson = new JSONObject(jsonString);
+
+        JSONArray trailerArray = trailerJson.getJSONArray(TRAILER_LIST);
+
+        parsedTrailerData = new ArrayList<>(trailerArray.length());
+
+        for (int i = 0; i < trailerArray.length(); i++) {
+
+            /* Get the JSON object representing the movie */
+            JSONObject trailer = trailerArray.getJSONObject(i);
+
+            /* These are the values that will be collected */
+            String id = trailer.getString(ID);
+            String name = trailer.getString(NAME);
+            String key = trailer.getString(KEY);
+
+            parsedTrailerData.add(new Trailer(id, name, key));
+
+        }
+
+        return parsedTrailerData;
+    }
+
+    public static ArrayList<Review> getReviewsFromJson(Context context, String jsonString)
+            throws JSONException {
+
+        final String REVIEW_LIST = "results";
+
+        final String AUTHOR = "author";
+        final String CONTENT = "content";
+
+        /* String array to hold each movie's details String */
+        ArrayList<Review> parsedReviewData = null;
+
+        JSONObject reviewJson = new JSONObject(jsonString);
+
+        JSONArray reviewArray = reviewJson.getJSONArray(REVIEW_LIST);
+
+        parsedReviewData = new ArrayList<>(reviewArray.length());
+
+        for (int i = 0; i < reviewArray.length(); i++) {
+
+            /* Get the JSON object representing the movie */
+            JSONObject review = reviewArray.getJSONObject(i);
+
+            /* These are the values that will be collected */
+            String author = review.getString(AUTHOR);
+            String content = review.getString(CONTENT);
+
+            parsedReviewData.add(new Review(author, content));
+
+        }
+
+        return parsedReviewData;
+    }
 }

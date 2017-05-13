@@ -1,4 +1,4 @@
-package com.github.chizoba.popularmovies;
+package com.github.chizoba.popularmovies.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,6 +12,9 @@ import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.github.chizoba.popularmovies.R;
+import com.github.chizoba.popularmovies.adapters.MovieAdapter;
+import com.github.chizoba.popularmovies.model.Movie;
 import com.github.chizoba.popularmovies.utilities.JsonUtils;
 import com.github.chizoba.popularmovies.utilities.NetworkUtils;
 

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity 
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,14 +21,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailActivity"
+            android:name=".activities.DetailActivity"
             android:label="@string/title_activity_detail"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.github.chizoba.popularmovies.MainActivity" />
+                android:value="com.github.chizoba.popularmovies.activities.MainActivity" />
         </activity>
+        <!-- Register the MoviesContentProvider -->
+        <!-- Set name, authorities, and exported attributes -->
+        <!-- exported = false limits access to this ContentProvider to only this app -->
+        <provider
+            android:name="com.github.chizoba.popularmovies.data.MoviesContentProvider"
+            android:authorities="com.github.chizoba.popularmovies"
+            android:exported="false"/>
     </application>
 
 </manifest>

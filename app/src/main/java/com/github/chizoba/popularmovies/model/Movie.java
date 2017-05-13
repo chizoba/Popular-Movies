@@ -1,4 +1,4 @@
-package com.github.chizoba.popularmovies;
+package com.github.chizoba.popularmovies.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,18 +8,20 @@ import android.os.Parcelable;
  */
 
 public class Movie implements Parcelable {
-    String moviePoster;
-    String originalTitle;
-    String plotSynopsis;
-    String userRating;
-    String releaseDate;
+    public String moviePoster;
+    public String originalTitle;
+    public String plotSynopsis;
+    public String userRating;
+    public String releaseDate;
+    public String id;
 
-    public Movie(String moviePoster, String originalTitle, String plotSynopsis, String userRating, String releaseDate) {
+    public Movie(String moviePoster, String originalTitle, String plotSynopsis, String userRating, String releaseDate, String id) {
         this.moviePoster = moviePoster;
         this.originalTitle = originalTitle;
         this.plotSynopsis = plotSynopsis;
         this.userRating = userRating;
         this.releaseDate = releaseDate;
+        this.id = id;
     }
 
     public Movie() {
@@ -32,6 +34,7 @@ public class Movie implements Parcelable {
         plotSynopsis = in.readString();
         userRating = in.readString();
         releaseDate = in.readString();
+        id = in.readString();
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -58,5 +61,6 @@ public class Movie implements Parcelable {
         out.writeString(plotSynopsis);
         out.writeString(userRating);
         out.writeString(releaseDate);
+        out.writeString(id);
     }
 }

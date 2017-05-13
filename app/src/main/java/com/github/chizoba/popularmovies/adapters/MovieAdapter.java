@@ -1,16 +1,15 @@
-package com.github.chizoba.popularmovies;
+package com.github.chizoba.popularmovies.adapters;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import com.github.chizoba.popularmovies.Constants;
+import com.github.chizoba.popularmovies.model.Movie;
+import com.github.chizoba.popularmovies.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -55,7 +54,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         viewHolder.imageView = (ImageView) convertView.findViewById(R.id.movie_poster);
         convertView.setTag(viewHolder);
 
-        String url = Constants.POSTER_BASE_URL+Constants.POSTER_SIZE+movie.moviePoster;
+        String url = Constants.POSTER_BASE_URL + Constants.POSTER_SIZE + movie.moviePoster;
         Picasso.with(getContext()).load(url).into(viewHolder.imageView);
 
         return convertView;
