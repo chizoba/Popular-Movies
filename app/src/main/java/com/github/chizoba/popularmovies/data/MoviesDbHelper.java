@@ -25,16 +25,18 @@ public class MoviesDbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        final String CREATE_TABLE = "CREATE TABLE "  + MoviesContract.MoviesEntry.TABLE_NAME + " (" +
-                MoviesContract.MoviesEntry._ID                + " INTEGER PRIMARY KEY, " +
+        final String CREATE_TABLE = "CREATE TABLE " + MoviesContract.MoviesEntry.TABLE_NAME + " (" +
+                MoviesContract.MoviesEntry._ID + " INTEGER PRIMARY KEY, " +
                 MoviesContract.MoviesEntry.COLUMN_MOVIE_POSTER + " TEXT NOT NULL, " +
                 MoviesContract.MoviesEntry.COLUMN_ORIGINAL_TITLE + " TEXT NOT NULL, " +
                 MoviesContract.MoviesEntry.COLUMN_PLOT_SYNOPSIS + " TEXT NOT NULL, " +
                 MoviesContract.MoviesEntry.COLUMN_RELEASE_DATE + " TEXT NOT NULL, " +
-                MoviesContract.MoviesEntry.COLUMN_USER_RATING    + " TEXT NOT NULL);";
+                MoviesContract.MoviesEntry.COLUMN_USER_RATING + " TEXT NOT NULL, " +
+                MoviesContract.MoviesEntry.COLUMN_MOVIE_ID + " TEXT NOT NULL);";
 
         sqLiteDatabase.execSQL(CREATE_TABLE);
     }
+
     /**
      * This method discards the old table of data and calls onCreate to recreate a new one.
      * This only occurs when the version number for this database (DATABASE_VERSION) is incremented.

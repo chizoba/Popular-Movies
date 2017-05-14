@@ -2,8 +2,8 @@ package com.github.chizoba.popularmovies.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MovieAdapter mAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.sort_by_top_rated) {
             makeGithubSearchQuery(id);
+            return true;
+        }
+
+        if (id == R.id.sort_by_favorites) {
+            startActivity(new Intent(this, FavoritesActivity.class));
             return true;
         }
 
@@ -108,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         mErrorMessageDisplay.setVisibility(View.VISIBLE);
     }
 
+
     private class QueryTask extends AsyncTask<URL, Void, ArrayList<Movie>> {
 
         @Override
@@ -148,15 +155,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-                    Movie movie = new Movie();
                         Intent i = new Intent(MainActivity.this, DetailActivity.class);
                         i.putExtra("MOVIE", searchResults.get(position));
-//                        i.putExtra(Constants.MOVIE_POSTER, searchResults.get(position).moviePoster);
-//                        i.putExtra(Constants.ORIGINAL_TITLE, searchResults.get(position).originalTitle);
-//                        i.putExtra(Constants.PLOT_SYNOPSIS, searchResults.get(position).plotSynopsis);
-//                        i.putExtra(Constants.USER_RATING, searchResults.get(position).userRating);
-//                        i.putExtra(Constants.RELEASE_DATE, searchResults.get(position).releaseDate);
-
                         startActivity(i);
                     }
                 });

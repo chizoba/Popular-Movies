@@ -1,6 +1,9 @@
 package com.github.chizoba.popularmovies.adapters;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.github.chizoba.popularmovies.Constants;
-import com.github.chizoba.popularmovies.model.Movie;
 import com.github.chizoba.popularmovies.R;
+import com.github.chizoba.popularmovies.model.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,6 +22,9 @@ import java.util.List;
  */
 
 public class MovieAdapter extends ArrayAdapter<Movie> {
+    // Class variables for the Cursor that holds task data and the Context
+    private Cursor mCursor;
+    private Context mContext;
 
     /**
      * This is our own custom constructor (it doesn't mirror a superclass constructor).

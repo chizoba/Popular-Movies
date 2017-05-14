@@ -33,7 +33,7 @@ public class NetworkUtils {
         if (id == R.id.sort_by_popular) {
             SORT_BY = "popular";
         }
-        if (id == R.id.sort_by_top_rated){
+        if (id == R.id.sort_by_top_rated) {
             SORT_BY = "top_rated";
         }
 
@@ -88,6 +88,7 @@ public class NetworkUtils {
 
         return url;
     }
+
     /**
      * This method returns the entire result from the HTTP response.
      *

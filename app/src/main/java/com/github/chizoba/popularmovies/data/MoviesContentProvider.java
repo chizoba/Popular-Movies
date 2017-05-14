@@ -25,9 +25,10 @@ public class MoviesContentProvider extends ContentProvider {
     private static final UriMatcher sUriMatcher = buildUriMatcher();
 
     // Define a static buildUriMatcher method that associates URI's with their int match
+
     /**
-     Initialize a new matcher object without any matches,
-     then use .addURI(String authority, String path, int match) to add matches
+     * Initialize a new matcher object without any matches,
+     * then use .addURI(String authority, String path, int match) to add matches
      */
     public static UriMatcher buildUriMatcher() {
 
@@ -79,7 +80,7 @@ public class MoviesContentProvider extends ContentProvider {
                 // Insert new values into the database
                 // Inserting values into tasks table
                 long id = db.insert(MoviesContract.MoviesEntry.TABLE_NAME, null, values);
-                if ( id > 0 ) {
+                if (id > 0) {
                     returnUri = ContentUris.withAppendedId(MoviesContract.MoviesEntry.CONTENT_URI, id);
                 } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
@@ -115,7 +116,7 @@ public class MoviesContentProvider extends ContentProvider {
         switch (match) {
             // Query for the tasks directory
             case MOVIES:
-                retCursor =  db.query(MoviesContract.MoviesEntry.TABLE_NAME,
+                retCursor = db.query(MoviesContract.MoviesEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,

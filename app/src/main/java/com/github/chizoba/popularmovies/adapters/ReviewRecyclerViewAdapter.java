@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.chizoba.popularmovies.R;
-import com.github.chizoba.popularmovies.model.Review;
 import com.github.chizoba.popularmovies.fragments.ReviewFragment.OnListFragmentInteractionListener;
+import com.github.chizoba.popularmovies.model.Review;
 
 import java.util.ArrayList;
 

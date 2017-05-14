@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity 
+        <activity
             android:name=".activities.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
@@ -33,9 +33,13 @@
         <!-- Set name, authorities, and exported attributes -->
         <!-- exported = false limits access to this ContentProvider to only this app -->
         <provider
-            android:name="com.github.chizoba.popularmovies.data.MoviesContentProvider"
+            android:name=".data.MoviesContentProvider"
             android:authorities="com.github.chizoba.popularmovies"
-            android:exported="false"/>
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.FavoritesActivity"
+            android:label="Favorites"></activity>
     </application>
 
 </manifest>
